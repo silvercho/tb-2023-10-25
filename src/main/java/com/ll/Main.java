@@ -6,8 +6,4 @@ public class Main {
         System.out.println("Hello world!");
     }
 }
-class App {
-    void run(){
 
-    }
-}

@@ -15,6 +15,11 @@ public class App {
         quotations = new ArrayList<>();
     }
 
+    void initTestData(){
+        for (int i=0; i<10; i++){
+            write("명언" +i, "작가"+i);
+        }
+    }
     public void run() {
         System.out.println("== 명언 앱 ==");
 
@@ -51,13 +56,8 @@ public class App {
         System.out.print("작가 : ");
         String authorName = scanner.nextLine();
 
-        lastQuotationId++;
-        int id = lastQuotationId;
-
-        Quotation quotation = new Quotation(id, content, authorName);
-        quotations.add(quotation);
-
-        System.out.printf("%d번 명언이 등록되었습니다.\n", lastQuotationId);
+        Quotation quotation =   write(content,authorName);
+        System.out.printf("%d번 명언이 등록되었습니다.\n", quotation.getId());
     }
 
     private void actionList() {
@@ -94,6 +94,15 @@ public class App {
         System.out.printf("%d번 명언을 삭제되었습니다.\n", id);
     }
 
+    private Quotation write(String content, String authorName){
+        lastQuotationId++;
+        int id = lastQuotationId;
+
+        Quotation quotation = new Quotation(id, content, authorName);
+        quotations.add(quotation);
+
+        return quotation;
+    }
     private int findQuotationIndexById(int id) {
         for (int i = 0; i < quotations.size(); i++) {
             Quotation quotation = quotations.get(i);
